@@ -1,6 +1,3 @@
-
-import Button from "../components/Button"
-import FormLabel from "../components/FormLabel"
 import SidebarDesktop from "../components/SidebarDesktop"
 interface HomeLayoutProps {
     children: React.ReactNode
@@ -16,15 +13,8 @@ function HomeLayout({ children }: HomeLayoutProps) {
             </div>
             <div className="sm:col-span-2
                             flex flex-col justify-center">
-                <div className="w-[70%] h-[80%] m-auto">
-                    <div className="w-full h-full flex flex-col justify-between">
-                        <FormLabel title="Personal info" description="Please provide your name, email address, and phone number." />
-                        {children}
-                        <div className="flex flex-row justify-between items-center">
-                            <Button type="button" label="Go Back" className="bg-transparent text-[#9699AB] p-0 font-semibold hover:bg-transparent hover:text-[#91939e]" />
-                            <Button type="button" label="Next Step" />
-                        </div>
-                    </div>
+                <div className="w-[70%] h-[85%] m-auto">
+                    {children}
                 </div>
             </div>
         </div>

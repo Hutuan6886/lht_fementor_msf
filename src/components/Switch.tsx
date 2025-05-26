@@ -1,9 +1,14 @@
-import React, { useRef, useState, type ChangeEvent } from 'react'
+import { useRef, useState, type ChangeEvent } from 'react'
+import type { SelectPlanFormType } from '../type'
+import type { UseFormSetValue } from 'react-hook-form'
 interface SwitchProps {
+    name: keyof SelectPlanFormType
+    setValue: UseFormSetValue<SelectPlanFormType>
 }
-function Switch({ }: SwitchProps) {
+
+function Switch({ name, setValue }: SwitchProps) {
     const swichRef = useRef<HTMLInputElement>(null)
-    const [isYearly, setIsYearly] = useState<boolean>()
+    const [isYearly, setIsYearly] = useState<boolean>(false)
     return (
         <div className="w-full relative">
             <div className='absolute top-0 left-1/2 -translate-x-1/2
@@ -25,7 +30,10 @@ function Switch({ }: SwitchProps) {
                                 transition
                                 ${isYearly ? "text-[#030055]" : "text-[#9699AB]"}`}>Yearly</p>
             </div>
-            <input ref={swichRef} type="checkbox" className="hidden" onChange={(e: ChangeEvent<HTMLInputElement>) => setIsYearly(e.target.checked)} />
+            <input ref={swichRef} type="checkbox" className="hidden" onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                setIsYearly(e.target.checked)
+                setValue(name, e.target.checked)
+            }} />
         </div>
     )
 }
